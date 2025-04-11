@@ -34,7 +34,7 @@ function App() {
               </Routes>
             </main>
           </div>
-          <Footer />
+         {/* <Footer />*/}
         </div>
     </ThemeProvider>
   );
