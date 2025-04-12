@@ -1,5 +1,5 @@
 // pages/Presentation.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Maximize2, Minimize2 } from 'lucide-react';
 import Slide from '../components/layout/Slide';
@@ -18,6 +18,8 @@ const Presentation = () => {
     const [activeSlide, setActiveSlide] = useState('slide1');
     const [availableSlides, setAvailableSlides] = useState(['slide1', 'slide2', 'slide3', 'slide4']);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [showControls, setShowControls] = useState(true);
+    const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
 
     // Parse the hash to determine current slide
     useEffect(() => {
@@ -72,6 +74,28 @@ const Presentation = () => {
         };
     }, []);
 
+    // Mouse movement handler
+    const handleMouseMove = useCallback(() => {
+        setShowControls(true);
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+        }
+        const timeout = setTimeout(() => {
+            setShowControls(false);
+        }, 2000);
+        setHideTimeout(timeout);
+    }, [hideTimeout]);
+
+    useEffect(() => {
+        document.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
+        };
+    }, [handleMouseMove, hideTimeout]);
+
     // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -122,7 +146,8 @@ const Presentation = () => {
                 )}
 
                 {/* Navigation Controls */}
-                <div className="absolute bottom-4 right-4 flex items-center space-x-4 bg-white dark:bg-slate-800 rounded-full shadow-lg p-2">
+                <div className={`absolute bottom-4 right-4 flex items-center space-x-4 bg-white dark:bg-slate-800 rounded-full shadow-lg p-2 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}>
                     <span className="text-sm text-gray-500 dark:text-gray-400 px-2">
                         {currentIndex + 1} / {totalSlides}
                     </span>
