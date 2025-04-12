@@ -11,12 +11,22 @@ import SlideTitle from '../components/slides/SlideTitle';
 import SlideDPIntro from '../components/slides/SlideDPIntro';
 import SlideStringSimilarity from '../components/slides/SlideStringSimilarity';
 import SlideEditDistance from '../components/slides/SlideEditDistance';
+import SlideAlignmentFormal from '../components/slides/SlideAlignmentFormal';
+import SlideDPSolution from '../components/slides/SlideDPSolution';
+import SlideBottomUp from '../components/slides/SlideBottomUp';
+import SlideExample from '../components/slides/SlideExample';
+import SlideAnalysis from '../components/slides/SlideAnalysis';
+import SlideHirschberg from '../components/slides/SlideHirschberg';
+import SlideSummary from '../components/slides/SlideSummary';
 
 const Presentation = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [activeSlide, setActiveSlide] = useState('slide1');
-    const [availableSlides, setAvailableSlides] = useState(['slide1', 'slide2', 'slide3', 'slide4']);
+    const [availableSlides, setAvailableSlides] = useState([
+        'slide1', 'slide2', 'slide3', 'slide4', 'slide5',
+        'slide6', 'slide7', 'slide8', 'slide9', 'slide10', 'slide11'
+    ]);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -142,6 +152,48 @@ const Presentation = () => {
                     <SlideEditDistance
                         id="slide4"
                         active={activeSlide === 'slide4'}
+                    />
+                )}
+                {activeSlide === 'slide5' && (
+                    <SlideAlignmentFormal
+                        id="slide5"
+                        active={activeSlide === 'slide5'}
+                    />
+                )}
+                {activeSlide === 'slide6' && (
+                    <SlideDPSolution
+                        id="slide6"
+                        active={activeSlide === 'slide6'}
+                    />
+                )}
+                {activeSlide === 'slide7' && (
+                    <SlideBottomUp
+                        id="slide7"
+                        active={activeSlide === 'slide7'}
+                    />
+                )}
+                {activeSlide === 'slide8' && (
+                    <SlideExample
+                        id="slide8"
+                        active={activeSlide === 'slide8'}
+                    />
+                )}
+                {activeSlide === 'slide9' && (
+                    <SlideAnalysis
+                        id="slide9"
+                        active={activeSlide === 'slide9'}
+                    />
+                )}
+                {activeSlide === 'slide10' && (
+                    <SlideHirschberg
+                        id="slide10"
+                        active={activeSlide === 'slide10'}
+                    />
+                )}
+                {activeSlide === 'slide11' && (
+                    <SlideSummary
+                        id="slide11"
+                        active={activeSlide === 'slide11'}
                     />
                 )}
 
