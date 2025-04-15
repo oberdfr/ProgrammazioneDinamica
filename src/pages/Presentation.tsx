@@ -17,6 +17,7 @@ import SlideBottomUp from '../components/slides/SlideBottomUp';
 import SlideExample from '../components/slides/SlideExample';
 import SlideAnalysis from '../components/slides/SlideAnalysis';
 import SlideHirschberg from '../components/slides/SlideHirschberg';
+import SlideApplications from '../components/slides/SlideApplications';
 import SlideSummary from '../components/slides/SlideSummary';
 
 const Presentation = () => {
@@ -25,7 +26,7 @@ const Presentation = () => {
     const [activeSlide, setActiveSlide] = useState('slide1');
     const [availableSlides, setAvailableSlides] = useState([
         'slide1', 'slide2', 'slide3', 'slide4', 'slide5',
-        'slide6', 'slide7', 'slide8', 'slide9', 'slide10', 'slide11'
+        'slide6', 'slide7', 'slide8', 'slide9', 'slide10', 'slide11', 'slide12'
     ]);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
@@ -191,9 +192,15 @@ const Presentation = () => {
                     />
                 )}
                 {activeSlide === 'slide11' && (
-                    <SlideSummary
+                    <SlideApplications
                         id="slide11"
                         active={activeSlide === 'slide11'}
+                    />
+                )}
+                {activeSlide === 'slide12' && (
+                    <SlideSummary
+                        id="slide12"
+                        active={activeSlide === 'slide12'}
                     />
                 )}
 
