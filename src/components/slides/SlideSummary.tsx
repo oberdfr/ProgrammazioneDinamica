@@ -24,7 +24,7 @@ const SlideSummary = ({ id, active }: SlideSummaryProps) => {
                     transition={{ delay: 0.2 }}
                 >
                     <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                             Problema fondamentale
                         </h3>
                         <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
@@ -36,7 +36,7 @@ const SlideSummary = ({ id, active }: SlideSummaryProps) => {
                     </div>
 
                     <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                             Soluzione DP standard
                         </h3>
                         <div className="space-y-2 text-gray-600 dark:text-gray-300">
@@ -55,7 +55,7 @@ const SlideSummary = ({ id, active }: SlideSummaryProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Algoritmo di Hirschberg
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -92,7 +92,7 @@ const SlideSummary = ({ id, active }: SlideSummaryProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">
                         Grazie per l'attenzione!
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300">

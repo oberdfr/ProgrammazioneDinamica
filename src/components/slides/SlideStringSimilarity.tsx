@@ -24,10 +24,10 @@ const SlideStringSimilarity = ({ id, active }: SlideStringSimilarityProps) => {
                     transition={{ delay: 0.2 }}
                 >
                     <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg mb-6">
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                             Esempio:
                         </h3>
-                        <div className="flex items-center justify-center space-x-4 text-2xl font-mono">
+                        <div className="flex items-center justify-center space-x-4 text-3xl font-mono">
                             <span className="text-gray-700 dark:text-gray-200">ocurrance</span>
                             <span className="text-gray-500">vs</span>
                             <span className="text-gray-700 dark:text-gray-200">occurrence</span>
@@ -40,7 +40,7 @@ const SlideStringSimilarity = ({ id, active }: SlideStringSimilarityProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                         Applicazioni:
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

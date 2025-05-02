@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --slide-scale-factor: 1;
+}
+
+/* Maintain proper size and scaling for all slide content */
+.slide-content-scaler {
+    /* Prevent text from being blurry when scaled */
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+}
+
+/* Force fixed sizes on common elements to prevent layout shifts */
+.slide-content-scaler p {
+    font-size: 32px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.slide-content-scaler ul li,
+.slide-content-scaler ol li {
+    font-size: 32px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.slide-content-scaler code,
+.slide-content-scaler pre {
+    font-size: 28px;
+    line-height: 1.4;
+}
+
+.slide-content-scaler button {
+    font-size: 24px;
+}
+
+/* Ensure SVGs and images scale properly */
+.slide-content-scaler svg,
+.slide-content-scaler img {
+    transform-origin: top left;
+    /* Counteract the parent scale to maintain proper proportions */
+    transform: scale(calc(1 / var(--slide-scale-factor)));
+}

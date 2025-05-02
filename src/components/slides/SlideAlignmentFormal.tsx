@@ -34,7 +34,7 @@ const SlideAlignmentFormal = ({ id, active }: SlideAlignmentFormalProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Definizione di Allineamento (M):
                     </h3>
                     <p className="text-gray-700 dark:text-gray-200 mb-4">
@@ -78,7 +78,7 @@ const SlideAlignmentFormal = ({ id, active }: SlideAlignmentFormalProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Costo di un Allineamento:
                     </h3>
                     <div className="bg-white dark:bg-slate-700 p-4 rounded-lg shadow">

@@ -34,7 +34,7 @@ const SlideDPIntro = ({ id, active }: SlideDPIntroProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Principi Chiave:
                     </h3>
                     <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-200">
@@ -52,7 +52,7 @@ const SlideDPIntro = ({ id, active }: SlideDPIntroProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Confronto con altri approcci:
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

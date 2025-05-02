@@ -47,7 +47,7 @@ const SlideBottomUp = ({ id, active }: SlideBottomUpProps) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                             Pseudocodice:
                         </h3>
                         <div className="font-mono text-sm bg-gray-100 dark:bg-slate-800 p-4 rounded overflow-y-auto max-h-[280px]">
@@ -85,7 +85,7 @@ const SlideBottomUp = ({ id, active }: SlideBottomUpProps) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.6 }}
                     >
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                             Simulazione Visiva:
                         </h3>
 
@@ -149,8 +149,8 @@ const SlideBottomUp = ({ id, active }: SlideBottomUpProps) => {
                                 onClick={handlePrevStep}
                                 disabled={step === 0}
                                 className={`px-4 py-2 rounded-full ${step === 0
-                                        ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
-                                        : 'bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800'
+                                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                    : 'bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800'
                                     }`}
                             >
                                 Indietro
@@ -159,8 +159,8 @@ const SlideBottomUp = ({ id, active }: SlideBottomUpProps) => {
                                 onClick={handleNextStep}
                                 disabled={step === totalSteps}
                                 className={`px-4 py-2 rounded-full ${step === totalSteps
-                                        ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
-                                        : 'bg-indigo-500 dark:bg-indigo-600 text-white hover:bg-indigo-600 dark:hover:bg-indigo-500'
+                                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                    : 'bg-indigo-500 dark:bg-indigo-600 text-white hover:bg-indigo-600 dark:hover:bg-indigo-500'
                                     }`}
                             >
                                 Avanti

@@ -11,8 +11,6 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import Presentation from './pages/Presentation';
 import Demo from './pages/Demo';
-//import Project from './pages/Project';
-//import About from './pages/About';
 
 // Tema e stile globale
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -29,8 +27,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                                <Route path="/presentation" element={<Presentation />} /> 
                                <Route path="/demo" element={<Demo />} /> 
-                {/* <Route path="/project" element={<Project />} />*/}
-                {/* <Route path="/about" element={<About />} />*/}
               </Routes>
             </main>
           </div>

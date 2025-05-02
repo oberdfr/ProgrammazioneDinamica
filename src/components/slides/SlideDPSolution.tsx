@@ -23,7 +23,7 @@ const SlideDPSolution = ({ id, active }: SlideDPSolutionProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Sottostruttura Ottima:
                     </h3>
                     <div className="bg-white dark:bg-slate-700 p-4 rounded-lg shadow mb-4">
@@ -42,7 +42,7 @@ const SlideDPSolution = ({ id, active }: SlideDPSolutionProps) => {
                     transition={{ delay: 0.4 }}
                     className="flex-1"
                 >
-                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
                         Relazione Ricorrente (Equazione di Bellman):
                     </h3>
                     <div className="bg-white dark:bg-slate-700 p-6 rounded-lg shadow-lg mb-4">

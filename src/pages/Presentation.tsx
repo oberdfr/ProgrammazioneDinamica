@@ -1,5 +1,5 @@
 // pages/Presentation.jsx
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Maximize2, Minimize2 } from 'lucide-react';
 import Slide from '../components/layout/Slide';
@@ -31,6 +31,45 @@ const Presentation = () => {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
+
+    // Ref for the slide container
+    const slideContainerRef = useRef<HTMLDivElement>(null);
+
+    // Function to calculate and apply the scale factor
+    const updateSlideScale = useCallback(() => {
+        if (!slideContainerRef.current) return;
+
+        const container = slideContainerRef.current;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+
+        // Calculate scale factor (our reference slide is 1920x1080)
+        // We need to find the smaller of the two ratios to keep everything visible
+        const widthRatio = containerWidth / 1920;
+        const heightRatio = containerHeight / 1080;
+        const scaleFactor = Math.min(widthRatio, heightRatio);
+
+        // Set the CSS variable that our slides will use
+        document.documentElement.style.setProperty('--slide-scale-factor', scaleFactor.toString());
+    }, []);
+
+    // Update scale when container size changes or fullscreen mode toggles
+    useEffect(() => {
+        updateSlideScale();
+
+        // Set up resize observer to update scale when container changes size
+        const resizeObserver = new ResizeObserver(() => {
+            updateSlideScale();
+        });
+
+        if (slideContainerRef.current) {
+            resizeObserver.observe(slideContainerRef.current);
+        }
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [updateSlideScale, isFullscreen]);
 
     // Parse the hash to determine current slide
     useEffect(() => {
@@ -128,85 +167,101 @@ const Presentation = () => {
     const totalSlides = availableSlides.length;
 
     return (
-        <div className={` ${isFullscreen ? 'fixed inset-0 z-50 bg-gray-900' : 'h-[calc(100vh-6rem)]'}`}>
-            <div className={`w-full h-full ${isFullscreen ? 'p-4' : 'p-6'} relative`}>
-                {/* Render the active slide */}
-                {activeSlide === 'slide1' && (
-                    <SlideTitle
-                        id="slide1"
-                        active={activeSlide === 'slide1'}
-                    />
-                )}
-                {activeSlide === 'slide2' && (
-                    <SlideDPIntro
-                        id="slide2"
-                        active={activeSlide === 'slide2'}
-                    />
-                )}
-                {activeSlide === 'slide3' && (
-                    <SlideStringSimilarity
-                        id="slide3"
-                        active={activeSlide === 'slide3'}
-                    />
-                )}
-                {activeSlide === 'slide4' && (
-                    <SlideEditDistance
-                        id="slide4"
-                        active={activeSlide === 'slide4'}
-                    />
-                )}
-                {activeSlide === 'slide5' && (
-                    <SlideAlignmentFormal
-                        id="slide5"
-                        active={activeSlide === 'slide5'}
-                    />
-                )}
-                {activeSlide === 'slide6' && (
-                    <SlideDPSolution
-                        id="slide6"
-                        active={activeSlide === 'slide6'}
-                    />
-                )}
-                {activeSlide === 'slide7' && (
-                    <SlideBottomUp
-                        id="slide7"
-                        active={activeSlide === 'slide7'}
-                    />
-                )}
-                {activeSlide === 'slide8' && (
-                    <SlideExample
-                        id="slide8"
-                        active={activeSlide === 'slide8'}
-                    />
-                )}
-                {activeSlide === 'slide9' && (
-                    <SlideAnalysis
-                        id="slide9"
-                        active={activeSlide === 'slide9'}
-                    />
-                )}
-                {activeSlide === 'slide10' && (
-                    <SlideHirschberg
-                        id="slide10"
-                        active={activeSlide === 'slide10'}
-                    />
-                )}
-                {activeSlide === 'slide11' && (
-                    <SlideApplications
-                        id="slide11"
-                        active={activeSlide === 'slide11'}
-                    />
-                )}
-                {activeSlide === 'slide12' && (
-                    <SlideSummary
-                        id="slide12"
-                        active={activeSlide === 'slide12'}
-                    />
-                )}
+        <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-gray-900' : 'h-[calc(100vh-6rem)]'} flex items-center justify-center overflow-hidden`}>
+            {/* 16:9 aspect ratio container that scales proportionally */}
+            <div
+                ref={slideContainerRef}
+                className="relative w-full h-full flex items-center justify-center"
+            >
+                <div
+                    className="relative bg-black"
+                    style={{
+                        width: 'min(100%, calc(100vh * 16/9))',
+                        height: 'min(100%, calc(100vw * 9/16))',
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                    }}
+                >
+                    {/* Slide container */}
+                    <div className="w-full h-full">
+                        {/* Render the active slide */}
+                        {activeSlide === 'slide1' && (
+                            <SlideTitle
+                                id="slide1"
+                                active={activeSlide === 'slide1'}
+                            />
+                        )}
+                        {activeSlide === 'slide2' && (
+                            <SlideDPIntro
+                                id="slide2"
+                                active={activeSlide === 'slide2'}
+                            />
+                        )}
+                        {activeSlide === 'slide3' && (
+                            <SlideStringSimilarity
+                                id="slide3"
+                                active={activeSlide === 'slide3'}
+                            />
+                        )}
+                        {activeSlide === 'slide4' && (
+                            <SlideEditDistance
+                                id="slide4"
+                                active={activeSlide === 'slide4'}
+                            />
+                        )}
+                        {activeSlide === 'slide5' && (
+                            <SlideAlignmentFormal
+                                id="slide5"
+                                active={activeSlide === 'slide5'}
+                            />
+                        )}
+                        {activeSlide === 'slide6' && (
+                            <SlideDPSolution
+                                id="slide6"
+                                active={activeSlide === 'slide6'}
+                            />
+                        )}
+                        {activeSlide === 'slide7' && (
+                            <SlideBottomUp
+                                id="slide7"
+                                active={activeSlide === 'slide7'}
+                            />
+                        )}
+                        {activeSlide === 'slide8' && (
+                            <SlideExample
+                                id="slide8"
+                                active={activeSlide === 'slide8'}
+                            />
+                        )}
+                        {activeSlide === 'slide9' && (
+                            <SlideAnalysis
+                                id="slide9"
+                                active={activeSlide === 'slide9'}
+                            />
+                        )}
+                        {activeSlide === 'slide10' && (
+                            <SlideHirschberg
+                                id="slide10"
+                                active={activeSlide === 'slide10'}
+                            />
+                        )}
+                        {activeSlide === 'slide11' && (
+                            <SlideApplications
+                                id="slide11"
+                                active={activeSlide === 'slide11'}
+                            />
+                        )}
+                        {activeSlide === 'slide12' && (
+                            <SlideSummary
+                                id="slide12"
+                                active={activeSlide === 'slide12'}
+                            />
+                        )}
+                    </div>
+                </div>
 
-                {/* Navigation Controls */}
-                <div className={`absolute bottom-4 right-4 flex items-center space-x-4 bg-white dark:bg-slate-800 rounded-full shadow-lg p-2 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                    }`}>
+                {/* Navigation Controls - moved outside the slide scaling container */}
+                <div className={`absolute bottom-4 right-4 flex items-center space-x-4 bg-white dark:bg-slate-800 rounded-full shadow-lg p-2 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                     <span className="text-sm text-gray-500 dark:text-gray-400 px-2">
                         {currentIndex + 1} / {totalSlides}
                     </span>

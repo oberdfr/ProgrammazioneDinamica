@@ -114,7 +114,7 @@ const SlideApplications = ({ id, active }: SlideApplicationsProps) => {
                         {applications.map((app) => (
                             app.id === selectedApp && (
                                 <div key={`detail-${app.id}`} className="h-full">
-                                    <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                                    <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                                         {app.title} in Azione
                                     </h3>
 

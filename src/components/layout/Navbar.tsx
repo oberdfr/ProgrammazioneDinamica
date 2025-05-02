@@ -32,8 +32,6 @@ const Navbar = () => {
               <NavLink to="/" currentPath={location.pathname}>Home</NavLink>
               <NavLink to="/presentation" currentPath={location.pathname}>Presentation</NavLink>
               <NavLink to="/demo" currentPath={location.pathname}>Interactive Demo</NavLink>
-              <NavLink to="/project" currentPath={location.pathname}>Project</NavLink>
-              <NavLink to="/about" currentPath={location.pathname}>About</NavLink>
             </div>
           </div>
           
@@ -67,8 +65,6 @@ const Navbar = () => {
           <MobileNavLink to="/" currentPath={location.pathname}>Home</MobileNavLink>
           <MobileNavLink to="/presentation" currentPath={location.pathname}>Presentation</MobileNavLink>
           <MobileNavLink to="/demo" currentPath={location.pathname}>Interactive Demo</MobileNavLink>
-          <MobileNavLink to="/project" currentPath={location.pathname}>Project</MobileNavLink>
-          <MobileNavLink to="/about" currentPath={location.pathname}>About</MobileNavLink>
         </div>
       </div>
     </nav>

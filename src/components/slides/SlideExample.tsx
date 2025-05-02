@@ -40,7 +40,7 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4 text-center">
+                        <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4 text-center">
                             Tabella DP completa:
                         </h3>
                         <div className="overflow-x-auto">
@@ -153,7 +153,7 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                         transition={{ delay: 0.6 }}
                     >
                         <div className="bg-white dark:bg-slate-700 p-4 rounded-lg shadow flex-1">
-                            <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                            <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                                 Trovare l'Allineamento (Traceback):
                             </h3>
                             <ol className="list-decimal pl-6 space-y-2 text-gray-700 dark:text-gray-200">

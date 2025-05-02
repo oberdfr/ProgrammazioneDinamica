@@ -74,14 +74,35 @@ const Slide = ({
             animate="visible"
             exit="exit"
             variants={slideVariants}
+            style={{
+                aspectRatio: '16/9',
+                transform: 'scale(1)',
+                transformOrigin: 'center center',
+                // Optimize rendering
+                willChange: 'transform',
+            }}
         >
-            <div className="p-8 md:p-12 h-full flex flex-col">
+            {/* Fixed-size slide content container */}
+            <div
+                className="slide-content-scaler p-8 h-full flex flex-col"
+                style={{
+                    // Fixed reference sizing - this will be our "canonical" slide size
+                    width: '1920px',
+                    height: '1080px',
+                    // Scale transform is dynamically calculated based on container size
+                    transform: 'scale(var(--slide-scale-factor))',
+                    transformOrigin: 'top left',
+                    // High quality scaling
+                    textRendering: 'geometricPrecision',
+                }}
+            >
                 {/* Slide Header */}
                 <div className="mb-8">
                     {title && (
                         <motion.h2
-                            className="text-4xl md:text-5xl font-bold tracking-tight mb-2"
+                            className="text-5xl font-bold tracking-tight mb-2"
                             variants={contentVariants}
+                            style={{ fontSize: '64px', lineHeight: '1.2' }}
                         >
                             {title}
                         </motion.h2>
@@ -89,8 +110,9 @@ const Slide = ({
 
                     {subtitle && (
                         <motion.h3
-                            className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300"
+                            className="text-3xl text-gray-600 dark:text-gray-300"
                             variants={contentVariants}
+                            style={{ fontSize: '36px', lineHeight: '1.3' }}
                         >
                             {subtitle}
                         </motion.h3>
@@ -99,7 +121,7 @@ const Slide = ({
 
                 {/* Slide Content */}
                 <motion.div
-                    className="flex-1 overflow-y-auto"
+                    className="flex-1 overflow-hidden"
                     variants={contentVariants}
                 >
                     {children}
