@@ -10,6 +10,8 @@ import SlideAnalysis from '../components/slides/SlideAnalysis';
 import SlideHirschberg from '../components/slides/SlideHirschberg';
 import SlideApplications from '../components/slides/SlideApplications';
 import SlideSummary from '../components/slides/SlideSummary';
+import SlideHistoryDP from '../components/slides/SlideHistoryDP';
+import SlideStringAlignment from '../components/slides/SlideStringAlignment';
 
 // Define slide structure
 export interface SlideConfig {
@@ -42,63 +44,69 @@ export const slides: SlideConfig[] = [
     },
     {
         id: 'slide3',
-        title: 'String Similarity',
-        component: SlideStringSimilarity,
+        title: 'Storia della Programmazione Dinamica',
+        component: SlideHistoryDP,
         path: '/presentation#slide3'
     },
     {
         id: 'slide4',
-        title: 'Edit Distance',
-        component: SlideEditDistance,
+        title: 'String Similarity',
+        component: SlideStringSimilarity,
         path: '/presentation#slide4'
     },
     {
         id: 'slide5',
-        title: 'Formal Alignment',
-        component: SlideAlignmentFormal,
+        title: 'Edit Distance',
+        component: SlideEditDistance,
         path: '/presentation#slide5'
     },
     {
         id: 'slide6',
-        title: 'DP Solution',
-        component: SlideDPSolution,
+        title: 'Formal Alignment',
+        component: SlideAlignmentFormal,
         path: '/presentation#slide6'
     },
     {
         id: 'slide7',
-        title: 'Bottom-Up Approach',
-        component: SlideBottomUp,
+        title: 'DP Solution',
+        component: SlideDPSolution,
         path: '/presentation#slide7'
     },
     {
         id: 'slide8',
-        title: 'Example',
-        component: SlideExample,
+        title: 'Bottom-Up Approach',
+        component: SlideBottomUp,
         path: '/presentation#slide8'
     },
     {
         id: 'slide9',
-        title: 'Analysis',
-        component: SlideAnalysis,
+        title: 'Example',
+        component: SlideExample,
         path: '/presentation#slide9'
     },
     {
         id: 'slide10',
-        title: 'Hirschberg Algorithm',
-        component: SlideHirschberg,
+        title: 'Analysis',
+        component: SlideAnalysis,
         path: '/presentation#slide10'
     },
     {
         id: 'slide11',
-        title: 'Applications',
-        component: SlideApplications,
+        title: 'Hirschberg Algorithm',
+        component: SlideHirschberg,
         path: '/presentation#slide11'
     },
     {
         id: 'slide12',
+        title: 'Applications',
+        component: SlideApplications,
+        path: '/presentation#slide12'
+    },
+    {
+        id: 'slide13',
         title: 'Summary',
         component: SlideSummary,
-        path: '/presentation#slide12'
+        path: '/presentation#slide14'
     }
 ];
 
