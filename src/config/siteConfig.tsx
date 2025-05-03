@@ -33,13 +33,13 @@ export interface NavItem {
 export const slides: SlideConfig[] = [
     {
         id: 'slide1',
-        title: 'Introduction',
+        title: 'Copertina',
         component: SlideTitle,
         path: '/presentation#slide1'
     },
     {
         id: 'slide2',
-        title: 'Dynamic Programming Introduction',
+        title: 'Introduzione',
         component: SlideDPIntro,
         path: '/presentation#slide2'
     },
@@ -51,75 +51,69 @@ export const slides: SlideConfig[] = [
     },
     {
         id: 'slide4',
-        title: 'Allineamento di Sequenze nelle Reti',
-        component: SlideNetworkDP,
+        title: 'Similarità tra stringhe',
+        component: SlideStringSimilarity,
         path: '/presentation#slide4'
     },
     {
         id: 'slide5',
-        title: 'Tecniche di Allineamento nelle Reti',
-        component: SlideNetworkDetailsDP,
+        title: 'Edit Distance',
+        component: SlideEditDistance,
         path: '/presentation#slide5'
     },
     {
         id: 'slide6',
-        title: 'String Similarity',
-        component: SlideStringSimilarity,
+        title: 'Definizione formale',
+        component: SlideAlignmentFormal,
         path: '/presentation#slide6'
     },
     {
         id: 'slide7',
-        title: 'Edit Distance',
-        component: SlideEditDistance,
+        title: 'Sottostruttura',
+        component: SlideDPSolution,
         path: '/presentation#slide7'
     },
     {
         id: 'slide8',
-        title: 'Formal Alignment',
-        component: SlideAlignmentFormal,
+        title: 'ApproccioBottom-Up',
+        component: SlideBottomUp,
         path: '/presentation#slide8'
     },
     {
         id: 'slide9',
-        title: 'DP Solution',
-        component: SlideDPSolution,
+        title: 'Esempio allineamento ottimale',
+        component: SlideExample,
         path: '/presentation#slide9'
     },
     {
         id: 'slide10',
-        title: 'Bottom-Up Approach',
-        component: SlideBottomUp,
+        title: 'Valutazione delle performance',
+        component: SlideAnalysis,
         path: '/presentation#slide10'
     },
     {
         id: 'slide11',
-        title: 'Example',
-        component: SlideExample,
+        title: 'Algoritmo di Hirschberg',
+        component: SlideHirschberg,
         path: '/presentation#slide11'
     },
     {
         id: 'slide12',
-        title: 'Analysis',
-        component: SlideAnalysis,
+        title: 'Allineamento di Sequenze nelle Reti',
+        component: SlideNetworkDP,
         path: '/presentation#slide12'
     },
     {
         id: 'slide13',
-        title: 'Hirschberg Algorithm',
-        component: SlideHirschberg,
+        title: 'Tecniche di Allineamento nelle Reti',
+        component: SlideNetworkDetailsDP,
         path: '/presentation#slide13'
     },
     {
         id: 'slide14',
-        title: 'Applications',
+        title: 'Applicazioni nel mondo reale',
         component: SlideApplications,
         path: '/presentation#slide14'
-    },
-    {
-        id: 'slide15',
-        title: 'Summary',
-        component: SlideSummary,
-        path: '/presentation#slide15'
     }
 ];
 

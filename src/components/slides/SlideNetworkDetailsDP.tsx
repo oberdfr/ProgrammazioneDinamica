@@ -22,7 +22,7 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
             title="Tecniche di Allineamento nelle Reti"
             subtitle="Dettagli applicativi e casi di studio"
             active={active}
-            backgroundColor="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-indigo-900"
+            backgroundColor="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-slate-800 dark:to-purple-900"
         >
             <div className="flex flex-col h-full">
                 <div className="flex justify-center mb-4">
@@ -51,7 +51,7 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
                             transition={{ duration: 0.3 }}
                             className="h-full"
                         >
-                            <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                            <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                                 Deep Packet Inspection (DPI)
                             </h3>
 
@@ -101,7 +101,7 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
                             transition={{ duration: 0.3 }}
                             className="h-full"
                         >
-                            <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                            <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                                 Ricostruzione Pacchetti
                             </h3>
 
@@ -110,35 +110,37 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
                                     <div className="text-2xl text-gray-700 dark:text-gray-200">
                                         <p className="mb-2">Gli algoritmi di allineamento consentono di:</p>
                                         <ul className="list-disc pl-6 space-y-2 text-xl">
-                                            <li>Ricostruire flussi TCP frammentati o arrivati fuori ordine</li>
-                                            <li>Analizzare sessioni di rete complete partendo da catture parziali</li>
-                                            <li>Recuperare contenuti persi durante la trasmissione</li>
+                                            <li>Ricostruire flussi TCP/IP da pacchetti frammentati</li>
+                                            <li>Identificare comunicazioni malevole anche se suddivise tra più pacchetti</li>
+                                            <li>Rilevare tecniche di evasione come la frammentazione intenzionale</li>
                                         </ul>
                                     </div>
 
                                     <div className="text-2xl text-gray-700 dark:text-gray-200 mt-4">
-                                        <p className="text-indigo-600 dark:text-indigo-400 font-semibold">Caso d'uso:</p>
-                                        <p>Network forensics dopo un attacco - ricostruzione delle comunicazioni anche con pacchetti persi.</p>
+                                        <p className="text-indigo-600 dark:text-indigo-400 font-semibold">Caso d'uso reale:</p>
+                                        <p>Rilevamento di attacco frammentato che tenta di aggirare i normali sistemi IDS/IPS dividendo un payload malevolo in multipli pacchetti.</p>
                                     </div>
                                 </div>
 
                                 <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4">
-                                    <div className="text-lg font-semibold mb-2 text-center">Ricostruzione flusso TCP</div>
+                                    <div className="text-lg font-semibold mb-2 text-center">Evasione tramite frammentazione TCP/IP</div>
                                     <div className="font-mono text-sm bg-white dark:bg-gray-900 p-3 rounded-lg">
-                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Pacchetti TCP catturati (fuori ordine) */</div>
-                                        <div className="mb-1">Pacchetto #3: <span className="text-blue-600 dark:text-blue-400">...HTTP/1.1 200 OK\r\nContent-Type:</span></div>
-                                        <div className="mb-1">Pacchetto #1: <span className="text-blue-600 dark:text-blue-400">GET /login.php HTTP/1.1\r\nHost:</span></div>
-                                        <div className="mb-4">Pacchetto #2: <span className="text-blue-600 dark:text-blue-400">example.com\r\nUser-Agent: Mozilla...</span></div>
+                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Attack payload if sent in a single packet */</div>
+                                        <div className="mb-4"><span className="text-red-600 dark:text-red-400">GET /login.php HTTP/1.1\r\nHost: example.com\r\nUser-Agent: Mozilla/5.0\r\n\r\nusername=admin'--&password=anything</span></div>
 
-                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Sequenza ricostruita */</div>
-                                        <div className="mb-1">1: <span className="text-blue-600 dark:text-blue-400">GET /login.php HTTP/1.1\r\n</span></div>
-                                        <div className="mb-1">2: <span className="text-blue-600 dark:text-blue-400">Host: example.com\r\n</span></div>
-                                        <div className="mb-1">3: <span className="text-blue-600 dark:text-blue-400">User-Agent: Mozilla...\r\n</span></div>
-                                        <div>4: <span className="text-blue-600 dark:text-blue-400">HTTP/1.1 200 OK\r\nContent-Type:</span></div>
+                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Attacco frammentato in pacchetti distinti */</div>
+                                        <div className="mb-1">Pacchetto #1: <span className="text-blue-600 dark:text-blue-400">GET /login.php HTTP/1.1\r\n</span></div>
+                                        <div className="mb-1">Pacchetto #2: <span className="text-blue-600 dark:text-blue-400">Host: example.com\r\n</span></div>
+                                        <div className="mb-1">Pacchetto #3: <span className="text-blue-600 dark:text-blue-400">User-Agent: Mozilla/5.0\r\n\r\n</span></div>
+                                        <div className="mb-4">Pacchetto #4: <span className="text-red-600 dark:text-red-400">username=admin'--&password=anything</span></div>
+
+                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Ricostruzione con algoritmi di allineamento */</div>
+                                        <div>Signature: <span className="text-red-600 dark:text-red-400">username=admin'--</span> <span className="text-purple-600 dark:text-purple-400">(SQL Injection)</span></div>
+                                        <div>Similarity Score: <span className="text-green-600 dark:text-green-400">100% match</span> dopo ricostruzione del flusso TCP</div>
                                     </div>
 
                                     <div className="mt-4 text-center text-gray-600 dark:text-gray-400 text-sm italic">
-                                        Gli algoritmi identificano sovrapposizioni e contintuità nei frame TCP, riordinandoli anche con informazioni di sequenza parziali.
+                                        I moderni firewall applicano algoritmi di allineamento per ricostruire sessioni HTTP/TCP/IP complete nonostante tentativi di evasione tramite frammentazione. Snort e Suricata utilizzano algoritmi di stream reassembly basati su principi di allineamento ottimale.
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +155,7 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
                             transition={{ duration: 0.3 }}
                             className="h-full"
                         >
-                            <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+                            <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
                                 Protocolli di Correzione Errori (FEC)
                             </h3>
 

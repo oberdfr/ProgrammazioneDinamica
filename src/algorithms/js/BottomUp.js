@@ -1,5 +1,5 @@
 /**
- * Implementazione Bottom-Up per allineamento di sequenze
+ * Implementazione Bottom-Up per allineamento di sequenze (Needleman-Wunsch)
  * Usa una matrice 2D completa come nel tuo codice originale ma con logica semplificata
  */
 export function calcola(seq1, seq2, gapPenalty = 1, mismatchPenalty = 1) {
