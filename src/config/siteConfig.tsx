@@ -12,6 +12,7 @@ import SlideApplications from '../components/slides/SlideApplications';
 import SlideSummary from '../components/slides/SlideSummary';
 import SlideHistoryDP from '../components/slides/SlideHistoryDP';
 import SlideNetworkDP from '../components/slides/SlideNetworkDP';
+import SlideNetworkDetailsDP from '../components/slides/SlideNetworkDetailsDP';
 
 // Define slide structure
 export interface SlideConfig {
@@ -50,69 +51,75 @@ export const slides: SlideConfig[] = [
     },
     {
         id: 'slide4',
-        title: 'DP e Sistemi di Rete',
+        title: 'Allineamento di Sequenze nelle Reti',
         component: SlideNetworkDP,
         path: '/presentation#slide4'
     },
     {
         id: 'slide5',
-        title: 'String Similarity',
-        component: SlideStringSimilarity,
+        title: 'Tecniche di Allineamento nelle Reti',
+        component: SlideNetworkDetailsDP,
         path: '/presentation#slide5'
     },
     {
         id: 'slide6',
-        title: 'Edit Distance',
-        component: SlideEditDistance,
+        title: 'String Similarity',
+        component: SlideStringSimilarity,
         path: '/presentation#slide6'
     },
     {
         id: 'slide7',
-        title: 'Formal Alignment',
-        component: SlideAlignmentFormal,
+        title: 'Edit Distance',
+        component: SlideEditDistance,
         path: '/presentation#slide7'
     },
     {
         id: 'slide8',
-        title: 'DP Solution',
-        component: SlideDPSolution,
+        title: 'Formal Alignment',
+        component: SlideAlignmentFormal,
         path: '/presentation#slide8'
     },
     {
         id: 'slide9',
-        title: 'Bottom-Up Approach',
-        component: SlideBottomUp,
+        title: 'DP Solution',
+        component: SlideDPSolution,
         path: '/presentation#slide9'
     },
     {
         id: 'slide10',
-        title: 'Example',
-        component: SlideExample,
+        title: 'Bottom-Up Approach',
+        component: SlideBottomUp,
         path: '/presentation#slide10'
     },
     {
         id: 'slide11',
-        title: 'Analysis',
-        component: SlideAnalysis,
+        title: 'Example',
+        component: SlideExample,
         path: '/presentation#slide11'
     },
     {
         id: 'slide12',
-        title: 'Hirschberg Algorithm',
-        component: SlideHirschberg,
+        title: 'Analysis',
+        component: SlideAnalysis,
         path: '/presentation#slide12'
     },
     {
         id: 'slide13',
-        title: 'Applications',
-        component: SlideApplications,
+        title: 'Hirschberg Algorithm',
+        component: SlideHirschberg,
         path: '/presentation#slide13'
     },
     {
         id: 'slide14',
+        title: 'Applications',
+        component: SlideApplications,
+        path: '/presentation#slide14'
+    },
+    {
+        id: 'slide15',
         title: 'Summary',
         component: SlideSummary,
-        path: '/presentation#slide14'
+        path: '/presentation#slide15'
     }
 ];
 
