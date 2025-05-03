@@ -2,9 +2,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Maximize2, Minimize2 } from 'lucide-react';
-import Slide from '../components/layout/Slide';
-import CodeViewer from '../components/common/CodeViewer';
-import AlgorithmVisualizer from '../components/visualization/AlgorithmVisualizer';
 
 // Import slide configuration
 import { slides, getSlideIds } from '../config/siteConfig';

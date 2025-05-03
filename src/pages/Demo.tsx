@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AlgorithmVisualizer from '../components/visualization/AlgorithmVisualizer';
 import CodeEditor from '../components/common/CodeEditor';
-import { calcola } from '../algorithms/js/algorithm';
-import algorithmCode from '../algorithms/js/algorithm?raw';
+import { calcola } from '../algorithms/js/BottomUp';
+import algorithmCode from '../algorithms/js/BottomUp?raw';
 import CodeViewer from '@/components/common/CodeViewer';
-import fs from 'fs';
 
 const Demo = () => {
     const [sequence1, setSequence1] = useState('PALETTE');
