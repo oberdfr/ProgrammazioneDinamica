@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-4">
             <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              DynAlign
+              Programmazione Dinamica - Allineamento di Sequenze
             </span>
             <span className="text-sm text-gray-500 dark:text-gray-400">
               © {currentYear} Sequence Alignment Explorer

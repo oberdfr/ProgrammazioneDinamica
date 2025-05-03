@@ -31,13 +31,13 @@ const Navbar = () => {
     return (
         <>
             <nav className="bg-white dark:bg-slate-800 shadow-md fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
                                 <Link to="/" className="flex items-center">
                                     <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                        DynAlign
+                                        Programmazione Dinamica - Allineamento di Sequenze
                                     </span>
                                 </Link>
                             </div>

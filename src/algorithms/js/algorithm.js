@@ -1,86 +1,86 @@
-// Simple implementation for execution demonstration (must match visualizer's logic for consistency)
-export function calculate(seq1, seq2, gapPenalty, mismatchPenalty) {
+// Implementazione semplice per dimostrazione di esecuzione (deve corrispondere alla logica del visualizzatore per coerenza)
+export function calcola(seq1, seq2, penalitaGap, penalitaMismatch) {
     const m = seq1.length;
     const n = seq2.length;
 
-    // Initialize matrix: Store value and source pointer ('diag', 'up', 'left')
+    // Inizializza matrice: Memorizza valore e puntatore di origine ('diag', 'su', 'sinistra')
     const dp = Array(m + 1).fill(null).map(() =>
-        Array(n + 1).fill(null).map(() => ({ value: 0, source: null }))
+        Array(n + 1).fill(null).map(() => ({ valore: 0, origine: null }))
     );
 
-    // Initialize first row and column
-    for (let i = 1; i <= m; i++) dp[i][0] = { value: i * gapPenalty, source: 'up' };
-    for (let j = 1; j <= n; j++) dp[0][j] = { value: j * gapPenalty, source: 'left' };
+    // Inizializza prima riga e colonna
+    for (let i = 1; i <= m; i++) dp[i][0] = { valore: i * penalitaGap, origine: 'su' };
+    for (let j = 1; j <= n; j++) dp[0][j] = { valore: j * penalitaGap, origine: 'sinistra' };
 
-    // Fill DP table
+    // Riempi la tabella DP
     for (let i = 1; i <= m; i++) {
         for (let j = 1; j <= n; j++) {
-            const matchScore = seq1[i - 1] === seq2[j - 1] ? 0 : mismatchPenalty;
-            const diag = dp[i - 1][j - 1].value + matchScore;
-            const up = dp[i - 1][j].value + gapPenalty;
-            const left = dp[i][j - 1].value + gapPenalty;
+            const punteggioMatch = seq1[i - 1] === seq2[j - 1] ? 0 : penalitaMismatch;
+            const diag = dp[i - 1][j - 1].valore + punteggioMatch;
+            const su = dp[i - 1][j].valore + penalitaGap;
+            const sinistra = dp[i][j - 1].valore + penalitaGap;
 
-            let bestVal = diag;
-            let bestSource = 'diag';
+            let valMigliore = diag;
+            let origineMigliore = 'diag';
 
-            // Tie-breaking priority: Diagonal > Up > Left (consistent with visualizer)
-            if (up < bestVal) {
-                 bestVal = up;
-                 bestSource = 'up';
-            } else if (up === bestVal) { // Only consider Up if it's equal AND better than default Diag
-                 bestSource = 'up'; // Prefer Up over Left if diagonal is not the minimum
+            // Priorità in caso di parità: Diagonale > Su > Sinistra (coerente con il visualizzatore)
+            if (su < valMigliore) {
+                valMigliore = su;
+                origineMigliore = 'su';
+            } else if (su === valMigliore) { // Considera Su solo se è uguale E migliore della Diagonale predefinita
+                origineMigliore = 'su'; // Preferisci Su rispetto a Sinistra se la diagonale non è il minimo
             }
 
 
-            if (left < bestVal) {
-                bestVal = left;
-                bestSource = 'left';
-            } else if (left === bestVal && bestSource !== 'up') { // Only prefer left if equal and up wasn't already chosen
-                bestSource = 'left';
+            if (sinistra < valMigliore) {
+                valMigliore = sinistra;
+                origineMigliore = 'sinistra';
+            } else if (sinistra === valMigliore && origineMigliore !== 'su') { // Preferisci sinistra solo se uguale e su non è già stato scelto
+                origineMigliore = 'sinistra';
             }
 
 
-            dp[i][j] = { value: bestVal, source: bestSource };
+            dp[i][j] = { valore: valMigliore, origine: origineMigliore };
         }
     }
 
-    // Traceback
-    let aligned1 = '';
-    let aligned2 = '';
+    // Tracciamento all'indietro
+    let allineato1 = '';
+    let allineato2 = '';
     let i = m;
     let j = n;
 
     while (i > 0 || j > 0) {
-         if (i === 0) { // Only option is left
-             aligned1 = '-' + aligned1;
-             aligned2 = seq2[j - 1] + aligned2;
-             j--;
-         } else if (j === 0) { // Only option is up
-             aligned1 = seq1[i - 1] + aligned1;
-             aligned2 = '-' + aligned2;
-             i--;
-         } else {
-            const source = dp[i][j].source;
-            if (source === 'diag') {
-                aligned1 = seq1[i - 1] + aligned1;
-                aligned2 = seq2[j - 1] + aligned2;
+        if (i === 0) { // L'unica opzione è sinistra
+            allineato1 = '-' + allineato1;
+            allineato2 = seq2[j - 1] + allineato2;
+            j--;
+        } else if (j === 0) { // L'unica opzione è su
+            allineato1 = seq1[i - 1] + allineato1;
+            allineato2 = '-' + allineato2;
+            i--;
+        } else {
+            const origine = dp[i][j].origine;
+            if (origine === 'diag') {
+                allineato1 = seq1[i - 1] + allineato1;
+                allineato2 = seq2[j - 1] + allineato2;
                 i--;
                 j--;
-            } else if (source === 'up') {
-                aligned1 = seq1[i - 1] + aligned1;
-                aligned2 = '-' + aligned2;
+            } else if (origine === 'su') {
+                allineato1 = seq1[i - 1] + allineato1;
+                allineato2 = '-' + allineato2;
                 i--;
-            } else { // source === 'left'
-                aligned1 = '-' + aligned1;
-                aligned2 = seq2[j - 1] + aligned2;
+            } else { // origine === 'sinistra'
+                allineato1 = '-' + allineato1;
+                allineato2 = seq2[j - 1] + allineato2;
                 j--;
             }
-         }
+        }
     }
 
     return {
-        score: dp[m][n].value,
-        alignedSeq1: aligned1,
-        alignedSeq2: aligned2,
+        score: dp[m][n].valore,
+        alignedSeq1: allineato1,
+        alignedSeq2: allineato2,
     };
-};
+}; 
