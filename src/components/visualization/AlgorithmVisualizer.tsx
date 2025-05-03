@@ -1,6 +1,32 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
+// Define proper types for execution data
+interface Cell {
+    value: number;
+    source?: string;
+}
+
+interface Step {
+    i: number;
+    j: number;
+    value: number;
+    source: string;
+    diagVal?: number;
+    leftVal?: number;
+    upVal?: number;
+    matchScore?: number;
+}
+
+interface ExecutionData {
+    matrix: Cell[][];
+    steps: Step[];
+    path: [number, number][];
+    alignedSeq1: string;
+    alignedSeq2: string;
+    score: number;
+}
+
 const AlgorithmVisualizer = ({
     speed = 1,
     playing = false,
@@ -8,17 +34,17 @@ const AlgorithmVisualizer = ({
     sequence2 = '',
     gapPenalty = 2,
     mismatchPenalty = 1,
-    executionData = null,
+    executionData = null as ExecutionData | null,
 }) => {
-    const [matrix, setMatrix] = useState([]);
+    const [matrix, setMatrix] = useState<Cell[][]>([]);
     const [currentStep, setCurrentStep] = useState(-1);
-    const [steps, setSteps] = useState([]);
-    const [path, setPath] = useState([]);
-    const [alignment, setAlignment] = useState({ seq1: '', seq2: '', score: null });
+    const [steps, setSteps] = useState<Step[]>([]);
+    const [path, setPath] = useState<[number, number][]>([]);
+    const [alignment, setAlignment] = useState({ seq1: '', seq2: '', score: null as number | null });
     const [isCalculationComplete, setIsCalculationComplete] = useState(false);
     const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
-    const animationRef = useRef(null);
+    const animationRef = useRef<NodeJS.Timeout | null>(null);
 
     // Process execution data when it changes
     useEffect(() => {
@@ -68,29 +94,21 @@ const AlgorithmVisualizer = ({
         };
     }, [playing, currentStep, steps, speed, isCalculationComplete, isAnimationComplete]);
 
-    // Memoized display matrix
+    // Memoized display matrix - now shows all values without hiding them
     const displayMatrix = useMemo(() => {
         if (!matrix.length) return [];
 
         const m = matrix.length;
         const n = matrix[0].length;
-        const visibleMatrix = Array(m).fill(null).map(() => Array(n).fill(null));
 
-        // Fill initial row/column
-        for (let i = 0; i < m; i++) visibleMatrix[i][0] = matrix[i][0]?.value;
-        for (let j = 0; j < n; j++) visibleMatrix[0][j] = matrix[0][j]?.value;
+        // Create a matrix to track which cells should be visible - now include ALL cells
+        const visibleMatrix = Array(m).fill(null).map((_, i) =>
+            Array(n).fill(null).map((_, j) => matrix[i][j]?.value)
+        );
 
-        // Fill cells up to current step
-        for (let stepIndex = 0; stepIndex < currentStep; stepIndex++) {
-            if (stepIndex < steps.length) {
-                const step = steps[stepIndex];
-                if (matrix[step.i] && matrix[step.i][step.j] !== undefined) {
-                    visibleMatrix[step.i][step.j] = matrix[step.i][step.j].value;
-                }
-            }
-        }
+        // We track visited cells separately for styling, but all values remain visible
         return visibleMatrix;
-    }, [matrix, currentStep, steps]);
+    }, [matrix]);
 
     // Cell animation variants
     const cellVariants = {
@@ -102,9 +120,12 @@ const AlgorithmVisualizer = ({
             borderColor: 'rgba(79, 70, 229, 1)',
             transition: { duration: 0.15 },
             zIndex: 10,
+            opacity: 1,
         },
         path: {
             backgroundColor: 'rgba(165, 243, 195, 0.3)',
+            scale: 1,
+            opacity: 1,
         },
         pathHighlight: {
             scale: 1.1,
@@ -113,6 +134,7 @@ const AlgorithmVisualizer = ({
             borderWidth: '2px',
             transition: { duration: 0.15 },
             zIndex: 10,
+            opacity: 1,
         }
     };
 
@@ -146,6 +168,13 @@ const AlgorithmVisualizer = ({
     }
 
     const currentHighlightCell = (currentStep >= 0 && currentStep < steps.length) ? steps[currentStep] : null;
+
+    // Calculate which cells have been visited up to the current step
+    const visitedCells = new Set();
+    for (let i = 0; i < currentStep && i < steps.length; i++) {
+        const step = steps[i];
+        visitedCells.add(`${step.i},${step.j}`);
+    }
 
     return (
         <div className="space-y-6">
@@ -181,9 +210,11 @@ const AlgorithmVisualizer = ({
                                     {row.map((cellValue, j) => {
                                         const isCurrent = currentHighlightCell && i === currentHighlightCell.i && j === currentHighlightCell.j;
                                         const isOnPath = isCalculationComplete && path.some(([pi, pj]) => pi === i && pj === j);
+                                        const isVisited = visitedCells.has(`${i},${j}`);
 
-                                        let variant = 'initial';
-                                        if (cellValue !== null) variant = 'animate';
+                                        // Determine styling based on state, not visibility
+                                        let variant = 'animate';
+
                                         if (isAnimationComplete && isOnPath) variant = 'path';
                                         if (isCurrent) variant = isOnPath ? 'pathHighlight' : 'highlight';
 
@@ -196,16 +227,23 @@ const AlgorithmVisualizer = ({
                                             ? 'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700'
                                             : '';
 
+                                        const visitedCellStyle = isVisited && !isCurrent && !isOnPath
+                                            ? 'bg-gray-50 dark:bg-gray-800/50'
+                                            : '';
+
+                                        // Determine if we should show the value yet (for animation)
+                                        const shouldShowValue = (i === 0 || j === 0 || isVisited || isAnimationComplete);
+
                                         return (
                                             <motion.td
                                                 key={j}
                                                 variants={cellVariants}
-                                                initial="initial"
+                                                initial="animate"
                                                 animate={variant}
-                                                className={`${baseCellStyle} ${pathCellStyle} relative`}
+                                                className={`${baseCellStyle} ${pathCellStyle} ${visitedCellStyle} relative`}
                                             >
                                                 <span className="relative z-10">
-                                                    {cellValue !== null ? cellValue : ''}
+                                                    {shouldShowValue && cellValue !== null ? cellValue : ''}
                                                 </span>
                                             </motion.td>
                                         );
