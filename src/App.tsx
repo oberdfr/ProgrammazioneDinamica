@@ -1,39 +1,38 @@
 // App.jsx - Componente principale
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Componenti di layout
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Sidebar from './components/layout/Sidebar';
-import Footer from './components/layout/Footer';
-
-// Pagine
 import Home from './pages/Home';
 import Presentation from './pages/Presentation';
 import Demo from './pages/Demo';
+import NotFound from './pages/NotFound';
 
-// Tema e stile globale
-import { ThemeProvider } from './contexts/ThemeContext';
+const App = () => {
+    const location = useLocation();
+    const showSidebar = true;
 
-function App() {
     return (
         <ThemeProvider>
-            <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+            <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
                 <Navbar />
+
                 <div className="flex">
-                    <Sidebar />
-                    <main className="flex-1 p-4 sm:p-6 md:p-8">
+                    {showSidebar && <Sidebar />}
+
+                    <main className={`flex-1 p-4 ${showSidebar ? 'sm:ml-64' : ''}`}>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/presentation" element={<Presentation />} />
                             <Route path="/demo" element={<Demo />} />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>
                 </div>
-                {/* <Footer />*/}
             </div>
         </ThemeProvider>
     );
-}
+};
 
 export default App;

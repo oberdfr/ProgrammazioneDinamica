@@ -160,7 +160,7 @@ const Presentation = () => {
                 className="relative w-full h-full flex items-center justify-center"
             >
                 <div
-                    className="relative bg-black"
+                    className="relative"
                     style={{
                         width: 'min(100%, calc(100vh * 16/9))',
                         height: 'min(100%, calc(100vw * 9/16))',

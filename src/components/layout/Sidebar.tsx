@@ -79,7 +79,7 @@ const Sidebar = () => {
                 <ChevronRight size={24} />
             </button>
 
-            <aside className={`${sidebarClasses} hidden sm:block h-screen sticky top-16 bg-white dark:bg-slate-800 shadow-md transition-colors duration-300 overflow-hidden`}>
+            <aside className={`${sidebarClasses} hidden sm:block h-[calc(100vh-4rem)] fixed top-16 bg-white dark:bg-slate-800 shadow-md transition-colors duration-300 overflow-hidden`}>
                 <div className={`h-full overflow-y-auto ${isOpen ? 'px-3 py-4' : 'py-4'}`}>
                     {isOpen ? (
                         <nav className="space-y-1">
