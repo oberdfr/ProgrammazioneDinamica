@@ -6,28 +6,14 @@ import Slide from '../components/layout/Slide';
 import CodeViewer from '../components/common/CodeViewer';
 import AlgorithmVisualizer from '../components/visualization/AlgorithmVisualizer';
 
-// Import slide content components
-import SlideTitle from '../components/slides/SlideTitle';
-import SlideDPIntro from '../components/slides/SlideDPIntro';
-import SlideStringSimilarity from '../components/slides/SlideStringSimilarity';
-import SlideEditDistance from '../components/slides/SlideEditDistance';
-import SlideAlignmentFormal from '../components/slides/SlideAlignmentFormal';
-import SlideDPSolution from '../components/slides/SlideDPSolution';
-import SlideBottomUp from '../components/slides/SlideBottomUp';
-import SlideExample from '../components/slides/SlideExample';
-import SlideAnalysis from '../components/slides/SlideAnalysis';
-import SlideHirschberg from '../components/slides/SlideHirschberg';
-import SlideApplications from '../components/slides/SlideApplications';
-import SlideSummary from '../components/slides/SlideSummary';
+// Import slide configuration
+import { slides, getSlideIds } from '../config/siteConfig';
 
 const Presentation = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [activeSlide, setActiveSlide] = useState('slide1');
-    const [availableSlides, setAvailableSlides] = useState([
-        'slide1', 'slide2', 'slide3', 'slide4', 'slide5',
-        'slide6', 'slide7', 'slide8', 'slide9', 'slide10', 'slide11', 'slide12'
-    ]);
+    const [availableSlides, setAvailableSlides] = useState(getSlideIds());
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(true);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -185,78 +171,16 @@ const Presentation = () => {
                     {/* Slide container */}
                     <div className="w-full h-full">
                         {/* Render the active slide */}
-                        {activeSlide === 'slide1' && (
-                            <SlideTitle
-                                id="slide1"
-                                active={activeSlide === 'slide1'}
-                            />
-                        )}
-                        {activeSlide === 'slide2' && (
-                            <SlideDPIntro
-                                id="slide2"
-                                active={activeSlide === 'slide2'}
-                            />
-                        )}
-                        {activeSlide === 'slide3' && (
-                            <SlideStringSimilarity
-                                id="slide3"
-                                active={activeSlide === 'slide3'}
-                            />
-                        )}
-                        {activeSlide === 'slide4' && (
-                            <SlideEditDistance
-                                id="slide4"
-                                active={activeSlide === 'slide4'}
-                            />
-                        )}
-                        {activeSlide === 'slide5' && (
-                            <SlideAlignmentFormal
-                                id="slide5"
-                                active={activeSlide === 'slide5'}
-                            />
-                        )}
-                        {activeSlide === 'slide6' && (
-                            <SlideDPSolution
-                                id="slide6"
-                                active={activeSlide === 'slide6'}
-                            />
-                        )}
-                        {activeSlide === 'slide7' && (
-                            <SlideBottomUp
-                                id="slide7"
-                                active={activeSlide === 'slide7'}
-                            />
-                        )}
-                        {activeSlide === 'slide8' && (
-                            <SlideExample
-                                id="slide8"
-                                active={activeSlide === 'slide8'}
-                            />
-                        )}
-                        {activeSlide === 'slide9' && (
-                            <SlideAnalysis
-                                id="slide9"
-                                active={activeSlide === 'slide9'}
-                            />
-                        )}
-                        {activeSlide === 'slide10' && (
-                            <SlideHirschberg
-                                id="slide10"
-                                active={activeSlide === 'slide10'}
-                            />
-                        )}
-                        {activeSlide === 'slide11' && (
-                            <SlideApplications
-                                id="slide11"
-                                active={activeSlide === 'slide11'}
-                            />
-                        )}
-                        {activeSlide === 'slide12' && (
-                            <SlideSummary
-                                id="slide12"
-                                active={activeSlide === 'slide12'}
-                            />
-                        )}
+                        {slides.map((slide) => {
+                            const SlideComponent = slide.component;
+                            return activeSlide === slide.id && (
+                                <SlideComponent
+                                    key={slide.id}
+                                    id={slide.id}
+                                    active={activeSlide === slide.id}
+                                />
+                            );
+                        })}
                     </div>
                 </div>
 

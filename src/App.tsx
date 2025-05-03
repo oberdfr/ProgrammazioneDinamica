@@ -16,24 +16,24 @@ import Demo from './pages/Demo';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
-  return (
-    <ThemeProvider>
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-          <Navbar />
-          <div className="flex">
-            <Sidebar />
-            <main className="flex-1 p-4 sm:p-6 md:p-8">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                               <Route path="/presentation" element={<Presentation />} /> 
-                               <Route path="/demo" element={<Demo />} /> 
-              </Routes>
-            </main>
-          </div>
-         {/* <Footer />*/}
-        </div>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider>
+            <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+                <Navbar />
+                <div className="flex">
+                    <Sidebar />
+                    <main className="flex-1 p-4 sm:p-6 md:p-8">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/presentation" element={<Presentation />} />
+                            <Route path="/demo" element={<Demo />} />
+                        </Routes>
+                    </main>
+                </div>
+                {/* <Footer />*/}
+            </div>
+        </ThemeProvider>
+    );
 }
 
 export default App;
