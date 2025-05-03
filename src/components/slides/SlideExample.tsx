@@ -104,9 +104,9 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">1</td>
+                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>1</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
-                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
-                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>2</td>
+                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 bg-gray-100 dark:bg-slate-800 text-center">T</td>
@@ -114,9 +114,9 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">4</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
-                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">1</td>
-                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>0</td>
-                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">1</td>
+                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
+                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>1</td>
+                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 bg-gray-100 dark:bg-slate-800 text-center">T</td>
@@ -124,8 +124,8 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">5</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">4</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
-                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
-                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>1</td>
+                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
+                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-green-100 dark:bg-green-900/30' : ''}`}>2</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
                                     </tr>
                                     <tr>
@@ -134,9 +134,9 @@ const SlideExample = ({ id, active }: SlideExampleProps) => {
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">6</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">5</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">4</td>
+                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">4</td>
                                         <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">3</td>
-                                        <td className="border border-gray-300 dark:border-gray-600 w-10 h-10 text-center">2</td>
-                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-blue-100 dark:bg-blue-900/30 font-bold' : ''}`}>1</td>
+                                        <td className={`border border-gray-300 dark:border-gray-600 w-10 h-10 text-center ${showTraceback ? 'bg-blue-100 dark:bg-blue-900/30 font-bold' : ''}`}>2</td>
                                     </tr>
                                 </tbody>
                             </table>
