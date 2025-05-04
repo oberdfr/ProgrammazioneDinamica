@@ -1,10 +1,9 @@
 // App.jsx - Componente principale
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Sidebar from './components/layout/Sidebar';
-import Home from './pages/Home';
 import Presentation from './pages/Presentation';
 import Demo from './pages/Demo';
 import NotFound from './pages/NotFound';
@@ -23,7 +22,7 @@ const App = () => {
 
                     <main className={`flex-1 p-4 ${showSidebar ? 'sm:ml-64' : ''}`}>
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route path="/" element={<Navigate to="/presentation" replace />} />
                             <Route path="/presentation" element={<Presentation />} />
                             <Route path="/demo" element={<Demo />} />
                             <Route path="*" element={<NotFound />} />

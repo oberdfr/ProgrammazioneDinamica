@@ -116,14 +116,12 @@ export const getSlideIds = (): string[] => {
 
 // Main navigation items
 export const mainNavItems = [
-    { title: 'Home', path: '/' },
     { title: 'Presentation', path: '/presentation' },
     { title: 'Interactive Demo', path: '/demo' }
 ];
 
 // Full navigation items including those for sidebar
 export const allNavItems = [
-    { title: 'Home', path: '/', icon: 'Home' },
     { title: 'Presentation', path: '/presentation', icon: 'Presentation' },
     { title: 'Interactive Demo', path: '/demo', icon: 'Code' },
 ]; 
