@@ -67,59 +67,28 @@ const SlideNetworkDP = ({ id, active }: SlideNetworkDPProps) => {
                                     Allineamento in Azione
                                 </div>
 
-                                <div className="flex space-x-0">
-                                    <div
-                                        className={`flex-1 py-2 px-3 text-center cursor-pointer text-xl ${activeTab === 0 ? 'bg-purple-200 dark:bg-purple-800 rounded-t font-medium' : 'bg-gray-100 dark:bg-gray-700'}`}
-                                        onClick={() => setActiveTab(0)}
-                                    >
-                                        Pacchetti IP
-                                    </div>
-                                    <div
-                                        className={`flex-1 py-2 px-3 text-center cursor-pointer text-xl ${activeTab === 1 ? 'bg-purple-200 dark:bg-purple-800 rounded-t font-medium' : 'bg-gray-100 dark:bg-gray-700'}`}
-                                        onClick={() => setActiveTab(1)}
-                                    >
-                                        Malware Polimorfico
-                                    </div>
-                                </div>
-
                                 <div className="bg-purple-200 dark:bg-purple-800 p-3 rounded-b min-h-[150px]">
-                                    {activeTab === 0 ? (
-                                        <div className="text-gray-800 dark:text-gray-200 space-y-2">
-                                            <div className="text-xl">
-                                                <strong>Ricostruzione pacchetti IP:</strong>
-                                            </div>
-                                            <div className="font-mono text-sm bg-white dark:bg-gray-900 p-2 rounded">
-                                                <div className="mb-1">Pacchetto 1: <span className="text-blue-600 dark:text-blue-400">IP_src=192.168.1.5 Flag=MORE_FRAGMENTS Offset=0 Data=HTTP_GET</span></div>
-                                                <div className="mb-1">Pacchetto 2: <span className="text-blue-600 dark:text-blue-400">IP_src=192.168.1.5 Flag=MORE_FRAGMENTS Offset=1480 Data=HTTP_HEADERS</span></div>
-                                                <div>Pacchetto 3: <span className="text-blue-600 dark:text-blue-400">IP_src=192.168.1.5 Flag=LAST_FRAGMENT Offset=2960 Data=HTTP_BODY</span></div>
-                                            </div>
-                                            <div className="text-sm italic">
-                                                L'allineamento permette di ricostruire il flusso originale basandosi sugli offset e altri metadati dei pacchetti
-                                            </div>
+                                    <div className="text-gray-800 dark:text-gray-200 space-y-2">
+                                        <div className="text-xl">
+                                            <strong>Rilevamento di malware polimorfico:</strong>
                                         </div>
-                                    ) : (
-                                        <div className="text-gray-800 dark:text-gray-200 space-y-2">
-                                            <div className="text-xl">
-                                                <strong>Rilevamento di malware polimorfico:</strong>
-                                            </div>
-                                            <div className="font-mono text-sm bg-white dark:bg-gray-900 p-2 rounded overflow-x-auto">
-                                                <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Firma di malware nota (Emotet)</div>
-                                                <div className="mb-3">{`PE32 executable -> Imports: RegOpenKeyExA, CreateServiceA, StartServiceA`} <span className="text-red-500">{`-> Sezione .text: 48 8B 40 08 48 C1 E8 0F A8 01 75 05`}</span></div>
-                                                <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Variante polimorfica rilevata</div>
-                                                <div className="mb-3">{`PE32 executable -> Imports: RegOpenKeyExW, CreateServiceW, StartServiceW`} <span className="text-red-500">{`-> Sezione .text: 48 8B 04 DE 48 C1 EB 0F A8 01 0F 85 FB 00`}</span></div>
-                                                <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Allineamento delle sequenze</div>
-                                                <div className="mb-1">{`RegOpenKeyExA <-> RegOpenKeyExW (distanza = 1)`}</div>
-                                                <div className="mb-1">{`48 8B 40 08 48 C1 E8 0F A8 01 75`}</div>
-                                                <div>{`48 8B 04 DE 48 C1 EB 0F A8 01 0F 85`} <span className="text-purple-600 dark:text-purple-400">(similarità = 72%)</span></div>
-                                            </div>
-                                            <div className="text-sm italic">
-                                                Gli algoritmi di allineamento calcolano distanze di edit tra firme note e codice sospetto, rilevando varianti anche quando il malware usa tecniche di offuscamento come sostituzione di istruzioni e librerie.
-                                            </div>
+                                        <div className="font-mono text-sm bg-white dark:bg-gray-900 p-2 rounded overflow-x-auto">
+                                            <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Firma di malware nota (Emotet)</div>
+                                            <div className="mb-3">{`PE32 executable -> Imports: RegOpenKeyExA, CreateServiceA, StartServiceA`} <span className="text-red-500">{`-> Sezione .text: 48 8B 40 08 48 C1 E8 0F A8 01 75 05`}</span></div>
+                                            <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Variante polimorfica rilevata</div>
+                                            <div className="mb-3">{`PE32 executable -> Imports: RegOpenKeyExW, CreateServiceW, StartServiceW`} <span className="text-red-500">{`-> Sezione .text: 48 8B 04 DE 48 C1 EB 0F A8 01 0F 85 FB 00`}</span></div>
+                                            <div className="mb-1 font-semibold text-green-600 dark:text-green-400">// Allineamento delle sequenze</div>
+                                            <div className="mb-1">{`RegOpenKeyExA <-> RegOpenKeyExW (distanza = 1)`}</div>
+                                            <div className="mb-1">{`48 8B 40 08 48 C1 E8 0F A8 01 75`}</div>
+                                            <div>{`48 8B 04 DE 48 C1 EB 0F A8 01 0F 85`} <span className="text-purple-600 dark:text-purple-400">(similarità = 72%)</span></div>
                                         </div>
-                                    )}
+                                        <div className="text-sm italic">
+                                            Gli algoritmi di allineamento calcolano distanze di edit tra firme note e codice sospetto, rilevando varianti anche quando il malware usa tecniche di offuscamento come sostituzione di istruzioni e librerie.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="relative mt-3">
+                            <div className="relative mt-16">
                                 <div className="flex justify-center mb-2">
                                     <div className="text-center w-full">
                                         <svg width="240" height="120" viewBox="0 0 280 140" className="mx-auto text-purple-600 dark:text-purple-400">
@@ -142,7 +111,7 @@ const SlideNetworkDP = ({ id, active }: SlideNetworkDPProps) => {
                                         </svg>
                                     </div>
                                 </div>
-                                <div className="text-gray-700 dark:text-gray-200 text-center">
+                                <div className="text-gray-700 dark:text-gray-200 text-center mt-6">
                                     <div className="text-xl"><strong>Sicurezza avanzata:</strong> Gli algoritmi di allineamento permettono di identificare attacchi evasivi e malware polimorfici che tentano di aggirare sistemi di rilevamento tradizionali.</div>
                                 </div>
                             </div>

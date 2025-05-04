@@ -12,7 +12,6 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
 
     const tabs = [
         { title: "Deep Packet", key: 0 },
-        { title: "Ricostruzione", key: 1 },
         { title: "Correzione Err.", key: 2 },
     ];
 
@@ -86,60 +85,6 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
 
                                     <div className="mt-4 text-center text-gray-600 dark:text-gray-400 text-sm italic">
                                         I sistemi DPI utilizzano algoritmi come Aho-Corasick modificati con tecniche di allineamento per identificare anche varianti di pattern noti.
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* Ricostruzione Tab */}
-                    {activeTab === 1 && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="h-full"
-                        >
-                            <h3 className="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
-                                Ricostruzione Pacchetti
-                            </h3>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="space-y-4">
-                                    <div className="text-2xl text-gray-700 dark:text-gray-200">
-                                        <p className="mb-2">Gli algoritmi di allineamento consentono di:</p>
-                                        <ul className="list-disc pl-6 space-y-2 text-xl">
-                                            <li>Ricostruire flussi TCP/IP da pacchetti frammentati</li>
-                                            <li>Identificare comunicazioni malevole anche se suddivise tra più pacchetti</li>
-                                            <li>Rilevare tecniche di evasione come la frammentazione intenzionale</li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="text-2xl text-gray-700 dark:text-gray-200 mt-4">
-                                        <p className="text-indigo-600 dark:text-indigo-400 font-semibold">Caso d'uso reale:</p>
-                                        <p>Rilevamento di attacco frammentato che tenta di aggirare i normali sistemi IDS/IPS dividendo un payload malevolo in multipli pacchetti.</p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4">
-                                    <div className="text-lg font-semibold mb-2 text-center">Evasione tramite frammentazione TCP/IP</div>
-                                    <div className="font-mono text-sm bg-white dark:bg-gray-900 p-3 rounded-lg">
-                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Attack payload if sent in a single packet */</div>
-                                        <div className="mb-4"><span className="text-red-600 dark:text-red-400">GET /login.php HTTP/1.1\r\nHost: example.com\r\nUser-Agent: Mozilla/5.0\r\n\r\nusername=admin'--&password=anything</span></div>
-
-                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Attacco frammentato in pacchetti distinti */</div>
-                                        <div className="mb-1">Pacchetto #1: <span className="text-blue-600 dark:text-blue-400">GET /login.php HTTP/1.1\r\n</span></div>
-                                        <div className="mb-1">Pacchetto #2: <span className="text-blue-600 dark:text-blue-400">Host: example.com\r\n</span></div>
-                                        <div className="mb-1">Pacchetto #3: <span className="text-blue-600 dark:text-blue-400">User-Agent: Mozilla/5.0\r\n\r\n</span></div>
-                                        <div className="mb-4">Pacchetto #4: <span className="text-red-600 dark:text-red-400">username=admin'--&password=anything</span></div>
-
-                                        <div className="mb-2 text-green-600 dark:text-green-400">/* Ricostruzione con algoritmi di allineamento */</div>
-                                        <div>Signature: <span className="text-red-600 dark:text-red-400">username=admin'--</span> <span className="text-purple-600 dark:text-purple-400">(SQL Injection)</span></div>
-                                        <div>Similarity Score: <span className="text-green-600 dark:text-green-400">100% match</span> dopo ricostruzione del flusso TCP</div>
-                                    </div>
-
-                                    <div className="mt-4 text-center text-gray-600 dark:text-gray-400 text-sm italic">
-                                        I moderni firewall applicano algoritmi di allineamento per ricostruire sessioni HTTP/TCP/IP complete nonostante tentativi di evasione tramite frammentazione. Snort e Suricata utilizzano algoritmi di stream reassembly basati su principi di allineamento ottimale.
                                     </div>
                                 </div>
                             </div>
