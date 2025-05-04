@@ -105,7 +105,7 @@ const Sidebar = () => {
 
                                             {expandedSections.presentation && (
                                                 <div className="ml-6 mt-1 space-y-1">
-                                                    {slides.map(slide => (
+                                                    {slides.map((slide, index) => (
                                                         <Link
                                                             key={slide.id}
                                                             to={slide.path || `/presentation#${slide.id}`}
@@ -114,7 +114,7 @@ const Sidebar = () => {
                                                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/30'
                                                                 }`}
                                                         >
-                                                            {slide.title}
+                                                            {index + 1}. {slide.title}
                                                         </Link>
                                                     ))}
                                                 </div>

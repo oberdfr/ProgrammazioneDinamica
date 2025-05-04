@@ -8,8 +8,6 @@ import SlideBottomUp from '../components/slides/SlideBottomUp';
 import SlideExample from '../components/slides/SlideExample';
 import SlideAnalysis from '../components/slides/SlideAnalysis';
 import SlideHirschberg from '../components/slides/SlideHirschberg';
-import SlideApplications from '../components/slides/SlideApplications';
-import SlideSummary from '../components/slides/SlideSummary';
 import SlideHistoryDP from '../components/slides/SlideHistoryDP';
 import SlideNetworkDP from '../components/slides/SlideNetworkDP';
 import SlideNetworkDetailsDP from '../components/slides/SlideNetworkDetailsDP';
@@ -109,12 +107,6 @@ export const slides: SlideConfig[] = [
         component: SlideNetworkDetailsDP,
         path: '/presentation#slide13'
     },
-    {
-        id: 'slide14',
-        title: 'Applicazioni nel mondo reale',
-        component: SlideApplications,
-        path: '/presentation#slide14'
-    }
 ];
 
 // Helper function to get slide IDs

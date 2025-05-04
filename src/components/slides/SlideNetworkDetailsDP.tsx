@@ -60,7 +60,6 @@ const SlideNetworkDetailsDP = ({ id, active }: SlideNetworkDetailsDPProps) => {
                                     <div className="text-2xl text-gray-700 dark:text-gray-200">
                                         <p className="mb-2">Gli algoritmi di allineamento permettono l'ispezione del payload di rete per identificare pattern specifici:</p>
                                         <ul className="list-disc pl-6 space-y-2 text-xl">
-                                            <li>Identificazione di firme di malware anche con piccole variazioni</li>
                                             <li>Rilevazione di pattern di attacco nei pacchetti HTTP/HTTPS</li>
                                             <li>Monitoraggio di traffico di rete sospetto</li>
                                         </ul>
